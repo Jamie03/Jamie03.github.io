@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Saucepage</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/styles.css" rel="stylesheet">
+        <script
+        src="http://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous"></script>
+
+        <script>
+        var x = 0;
+        var postCounter = 0;
+        var URL = "https://jsonplaceholder.typicode.com";
+        $.get(URL + "/posts", function(obj){
+            postCounter = obj.length - 1;
+        });
+        console.log(postCounter);
+        $(document).ready(function()
+        {    
+            var page = 1;
+            
+            var URL = "https://jsonplaceholder.typicode.com";
+                $.get(URL + "/posts", function(obj){
+                        addPost(obj);
+                   });
+            console.log(postCounter);
+            function addPost(obj)
+            {
+                var x = postCounter;
+                for (var i = x; i > x - 10 && i >= 0; i--)
+                {
+                    console.log(postCounter);
+                    var holder = $("<div>");
+                    var title = $("<div>");
+                    var user = $("<div>");
+                    var postContent = $("<div>");
+
+                    console.log("hehe");
+                    $(title).addClass("title");
+                    $(user).addClass("poster");
+                    $(postContent).addClass("post");
+                    $(holder).addClass("postholder");
+
+                    getUser(obj[i].userId - 1, user);
+               
+                    $(postContent).text(obj[i].body);
+                
+
+                    $(title).html("<h3>" + obj[i].title + "</h3");
+              
+                    $(holder).append(title);
+                    $(holder).append(user);
+                    $(holder).append(postContent);
+
+
+                
+                    $(".scroll-div").append(holder);
+                    postCounter--;
+                }
+            }
+
+            function getUser(i, userDiv)
+            {
+               
+                 $.get(URL + "/users", function(obj){
+                    console.log(obj[i].username);
+                    $((userDiv).html("<h5>" + obj[i].username + "</h5>" + "<div class = id>" + (i + 1 )+ "</div>"));
+                 });
+            }
+
+            $(document).on("click", ".poster", function(){
+                console.log("YAY");
+                var id = $(this).children(".id").text();
+                console.log(id);
+                window.open("profile.html?id=" + id);
+            });
+
+            $(document).on("click", ".title", function(){
+                console.log("YAAYY");
+             });
+
+            $(".btn").click(function(){
+                page++;
+                $.get(URL + "/posts", function(obj){
+                        addPost(obj);
+                   });
+            });
+         });
+         </script>
+    </head>
+    <body>
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand">Sauce Page</a>
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse navHeaderCollapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Photos</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container scroll-div">
+            
+        </div>
+        <div class="container">
+            <button class = "btn btn-primary"> Load More <span class="glyphicon glyphicon-circle-arrow-down"></span></button>
+        </div>
+        
+        <script src="js/bootstrap.js"></script>
+    </body>
+</html>

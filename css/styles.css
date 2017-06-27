@@ -1,0 +1,68 @@
+body{
+    margin-top: 80px;
+}
+
+#ProfileIcon{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.img-thumbnail{
+    margin-top: 10%;
+}
+
+.postholder {
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-bottom: 1%;
+    display: block;
+    height: 100%;
+    width: 100%;
+    border-style:solid;
+    margin-bottom: 1%;
+}
+
+.title{
+    color: green;
+    text-decoration: underline;
+    padding-bottom: 5px;
+}
+
+.scroll-div{
+    overflow:auto;
+}
+
+.btn{
+    bottom:0px;
+    width:100%;
+}
+
+.poster{
+    color:blue;
+    text-decoration: underline;
+}
+
+.id{
+    display:none;
+}
+
+.seeAllPosts {
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.seeAllAlbums {
+    margin-top: 1%;
+}
+
+.loadMore{
+    position:fixed;
+    width:100%;
+    bottom:0px;
+}
+.id{
+    display:none;
+}
+
+.photos{
+    margin: 1%;
+}
